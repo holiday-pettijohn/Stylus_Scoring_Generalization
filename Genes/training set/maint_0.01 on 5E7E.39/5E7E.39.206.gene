@@ -1,0 +1,480 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<genome xmlns='http://biologicinstitute.org/schemas/stylus/1.5'>
+<seed processorID='4AFBBE2E-00CD-40B6-8A81-816F51B31EF6'>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</seed>
+<bases>ATGCTCTGTTACCTTGAATTGTTCTACGTTAGAACCGGGCCTGCGCTACGGAATTTCGCACACCTTAATAAATCAACCGGTCCTTCGTCTCCTGCGCAATGCGGAACACGCGATCATATCGTTGGTGCCCTTAATGGCTGGTGGGGTAGGCCGCCGCCATTTCGTATACCGACAGTCATTCTTCGGACGCCTCGGACAAATAGGATCTCCCTTAAATACAAAGCCCCGTATACGCCGGCGCCGGCGTCGCATATTAGAGTTCCTGGGCCCGGAGTATTAAATACGAGTCATACTCGTACGGACAGGAGCAGCGGAAGCGAAGATGGCGCACCTGGTCGTTACCTTGAGGCGAATCCTTTCATAGTCCGAAGGGAGCTACTGCAGACTCGGTGCCGTTGCGCTTCAGGACTCGCTGAGATCTCGGAGGTACTACAGATTCTCCAAATGCTATATCCTAGTGTAACTGCCACCCTTGCCATTACCGTAAAATTCGACACCGACTGGTCAGCCCGAAACCTCCTCGATGTAAGAACGCTTTGTGCGGTTGAGGTTCCTTATCTGGACTGCATGAGACGATCACGTGGTCGTCCGCCTCTCTCAAGAAACACGTGTGACATTTGTTGGAATCTTGTTGATACTCACAACGAGCAGAGACAAGCAATCCCGACAGAGCTTGGCATTCACGTTCTCAATGCCTCAAGTCGACTCGCCGTCCCCGCTGTACTGCTGCCTCCTGGTATGGTGTATTAA</bases>
+<termination terminationCode='8' reasonCode='3' description='[src/plan.cpp:1686           ] Finished trials: 20000' />
+<statistics trialFirst='0' trialLast='20000' trialAttempts='45263' score='1.041717400432104e-02' units='348.658314123564' cost='3.517027150456331e-01' fitness='2.961925955837283e-02' countBases='750' countRollbacks='0'>
+<scoreRange>
+<maximum trial='3888' value='0.0195787253256332' />
+<minimum trial='8451' value='0.0100001384819826' />
+</scoreRange>
+<unitsRange>
+<maximum trial='7185' value='382.638036085910' />
+<minimum trial='17395' value='338.646354496899' />
+</unitsRange>
+<costRange>
+<maximum trial='7185' value='0.384051410353787' />
+<minimum trial='17395' value='0.342171329481048' />
+</costRange>
+<fitnessRange>
+<maximum trial='3888' value='0.0532377979369001' />
+<minimum trial='7212' value='0.0262675909499514' />
+</fitnessRange>
+<bases changed='20000' inserted='0' deleted='0'>
+<maximum trial='0' countBases='750' />
+<minimum trial='0' countBases='750' />
+</bases>
+<rollbacks countRollbacks='25263'>
+<maximum trial='2539' countRollbacks='21' />
+<minimum trial='0' countRollbacks='0' />
+</rollbacks>
+<mutations>
+<changes attempted='45263' accepted='20000' compared='0' countBases='20000' silent='11966' />
+<copies attempted='0' accepted='0' compared='0' countBases='0' />
+<deletions attempted='0' accepted='0' compared='0' countBases='0' />
+<insertions attempted='0' accepted='0' compared='0' countBases='0' />
+<transpositions attempted='0' accepted='0' compared='0' countBases='0' />
+</mutations>
+</statistics>
+<lineage>
+<acceptedMutations>
+<changed targetIndex='432' countBases='1' bases='G' basesAfter='A' />
+</acceptedMutations>
+</lineage>
+<genes>
+<gene baseFirst='1' baseLast='750' units='348.658314123564'>
+<origin x='0.00000000000000' y='0.00000000000000' />
+<hanReferences>
+<hanReference unicode='5E7E'>
+<bounds top='4.65534699538582' left='-2.59372740543533' bottom='-13.9270771829901' right='14.6595695963346' width='17.2532970017700' height='18.5824241783759' x-midpoint='6.03292109544965' y-midpoint='-4.63586509380213' />
+<scale sxToHan='27.7278048874868' syToHan='30.7606557609378' />
+<translation dxToHan='116.109917416974' dyToHan='354.387449974637' />
+<score score='0.0104171740043210' scale='0.141221643489958' placement='0.00629369877026115' illegalOverlaps='0' missingOverlaps='0' marks='0.00000000000000' />
+<groups>
+<group>
+<bounds top='4.65534699538582' left='-2.59372740543533' bottom='-4.24332351636591' right='13.6516286285262' width='16.2453560339615' height='8.89867051175173' x-midpoint='5.52895061154543' y-midpoint='0.206011739509957' />
+<scale sxToHan='28.4384991430280' syToHan='25.7455915619220' />
+<translation dxToHan='111.531926682887' dyToHan='352.716284096134' />
+<score score='0.0126161189943721' scale='0.594519602887998' placement='0.0915608380853793' deviation='0.136380356980514' extraLength='0.191706539986113' illegalOverlaps='0' missingOverlaps='0' dropouts='0' />
+<containedStrokes>1 3 2 12 11 10</containedStrokes>
+</group>
+<group>
+<bounds top='4.48952500458726' left='-2.18613956774793' bottom='-13.9270771829901' right='14.6595695963346' width='16.8457091640826' height='18.4166021875773' x-midpoint='6.23671501429335' y-midpoint='-4.71877608920141' />
+<scale sxToHan='26.9999630670591' syToHan='33.2681878604457' />
+<translation dxToHan='121.557678420763' dyToHan='372.181742431731' />
+<score score='0.0145144548166578' scale='0.356951177400537' placement='0.124989712880184' deviation='0.161505844208684' extraLength='0.100571845443156' illegalOverlaps='0' missingOverlaps='0' dropouts='0' />
+<containedStrokes>5 6 7 4 8 9</containedStrokes>
+</group>
+</groups>
+<strokes>
+<stroke baseFirst='67' baseLast='75' correspondsTo='1'>
+<bounds top='4.00000000000000' left='-2.59372740543533' bottom='0.502534027604313' right='-0.262083423838207' width='2.33164398159712' height='3.49746597239569' x-midpoint='-1.42790541463677' y-midpoint='2.25126701380216' />
+<scale sxToHan='38.5993748232318' syToHan='37.1697683482973' />
+<translation dxToHan='160.116256311687' dyToHan='341.320926606811' />
+<score deviation='45.0000000000000' extraLength='0.00000000000000' dropouts='0' />
+</stroke>
+<stroke baseFirst='82' baseLast='99' correspondsTo='3'>
+<bounds top='0.502534027604313' left='0.290376413822276' bottom='-4.24332351636591' right='5.03623395779250' width='4.74585754397022' height='4.74585754397022' x-midpoint='2.66330518580739' y-midpoint='-1.87039474438080' />
+<scale sxToHan='6.32130225613621' syToHan='16.8568060163632' />
+<translation dxToHan='198.164442920176' dyToHan='331.528881380052' />
+<score deviation='5.27874188875631' extraLength='4.55275536612436' dropouts='0' />
+</stroke>
+<stroke baseFirst='133' baseLast='186' correspondsTo='2'>
+<bounds top='4.65534699538582' left='-2.16833879578974' bottom='-3.01911601508092' right='4.97784844730608' width='7.14618724309581' height='7.67446301046675' x-midpoint='1.40475482575817' y-midpoint='0.818115490152449' />
+<scale sxToHan='23.7889092766556' syToHan='19.5453414519588' />
+<translation dxToHan='101.582414894095' dyToHan='339.009653397834' />
+<score deviation='51.9627627358788' extraLength='141.781749126080' dropouts='0' />
+</stroke>
+<stroke baseFirst='214' baseLast='252' correspondsTo='10'>
+<bounds top='4.48952500458726' left='4.41624607996872' bottom='-8.21454623898629' right='12.3521096850271' width='7.93586360505833' height='12.7040712435735' x-midpoint='8.38417788249789' y-midpoint='-1.86251061719951' />
+<scale sxToHan='27.7773801277901' syToHan='36.2088649520676' />
+<translation dxToHan='146.890753898846' dyToHan='337.439395409969' />
+<score deviation='102.926061872346' extraLength='0.00000000000000' dropouts='0' />
+</stroke>
+<stroke baseFirst='301' baseLast='327' correspondsTo='7'>
+<bounds top='-7.50743945779974' left='0.197264199649922' bottom='-9.62875980135938' right='14.1221512992868' width='13.9248870996369' height='2.12132034355964' x-midpoint='7.15970774946837' y-midpoint='-8.56809962957956' />
+<scale sxToHan='30.8799631137557' syToHan='33.2681878604457' />
+<translation dxToHan='53.9084887911459' dyToHan='495.045148083868' />
+<score deviation='35.3464930686775' extraLength='30.7825943091413' dropouts='0' />
+</stroke>
+<stroke baseFirst='358' baseLast='375' correspondsTo='8'>
+<bounds top='-8.62875980135938' left='-1.15856385223675' bottom='-13.9270771829901' right='1.90437098083647' width='3.06293483307322' height='5.29831738163070' x-midpoint='0.372903564299858' y-midpoint='-11.2779184921747' />
+<scale sxToHan='32.6484255950245' syToHan='30.1982664448757' />
+<translation dxToHan='97.8252857268366' dyToHan='470.573587570283' />
+<score deviation='102.254426056469' extraLength='83.6045027841284' dropouts='0' />
+</stroke>
+<stroke baseFirst='388' baseLast='399' correspondsTo='9'>
+<bounds top='-4.59000903857571' left='-2.18613956774793' bottom='-8.33586658254593' right='1.55971797622229' width='3.74585754397022' height='3.74585754397022' x-midpoint='-0.313210795762818' y-midpoint='-6.46293781056082' />
+<scale sxToHan='26.6961567080873' syToHan='13.3480783540436' />
+<translation dxToHan='208.361524486349' dyToHan='221.267800292677' />
+<score deviation='7.82790137390548' extraLength='0.00000000000000' dropouts='0' />
+</stroke>
+<stroke baseFirst='460' baseLast='486' correspondsTo='11'>
+<bounds top='-1.97664688543763' left='1.92468855778584' bottom='-5.55668243860929' right='14.6595695963346' width='12.7348810385488' height='3.58003555317166' x-midpoint='8.29212907706023' y-midpoint='-3.76666466202346' />
+<scale sxToHan='18.8458768694827' syToHan='33.5192201914555' />
+<translation dxToHan='163.727556427866' dyToHan='236.255662193739' />
+<score deviation='22.8101292864673' extraLength='52.4960609462512' dropouts='0' />
+</stroke>
+<stroke baseFirst='580' baseLast='588' correspondsTo='12'>
+<bounds top='2.73045989574892' left='10.8619522665637' bottom='1.31624633337582' right='13.2761658289368' width='2.41421356237310' height='1.41421356237309' x-midpoint='12.0690590477502' y-midpoint='2.02335311456237' />
+<scale sxToHan='16.5685424949238' syToHan='35.3553390593274' />
+<translation dxToHan='210.033282293606' dyToHan='163.463664597901' />
+<score deviation='8.91604809522676' extraLength='7.52705721341326' dropouts='0' />
+</stroke>
+<stroke baseFirst='616' baseLast='627' correspondsTo='6'>
+<bounds top='3.94078353378640' left='8.07159307535454' bottom='0.443317561390713' right='11.5690590477502' width='3.49746597239569' height='3.49746597239569' x-midpoint='9.82032606155239' y-midpoint='2.19205054758856' />
+<scale sxToHan='8.68485933522715' syToHan='22.8737035989522' />
+<translation dxToHan='389.899349529352' dyToHan='259.859685500539' />
+<score deviation='26.6666666666666' extraLength='26.3371381947932' dropouts='0' />
+</stroke>
+<stroke baseFirst='640' baseLast='669' correspondsTo='5'>
+<bounds top='3.77496154298784' left='7.26822486112835' bottom='-1.74668849969740' right='11.7898749038136' width='4.52165004268524' height='5.52165004268524' x-midpoint='9.52904988247097' y-midpoint='1.01413652164522' />
+<scale sxToHan='37.5968945838726' syToHan='27.1657926236581' />
+<translation dxToHan='46.7373160842752' dyToHan='337.450177560908' />
+<score deviation='27.7373841110571' extraLength='48.5627663469219' dropouts='0' />
+</stroke>
+<stroke baseFirst='700' baseLast='729' correspondsTo='4'>
+<bounds top='2.31169701078902' left='9.53030828496656' bottom='-2.10251655158407' right='13.6516286285262' width='4.12132034355964' height='4.41421356237309' x-midpoint='11.5909684567464' y-midpoint='0.104590229602473' />
+<scale sxToHan='24.2640687119285' syToHan='27.1849103593184' />
+<translation dxToHan='78.7559449277099' dyToHan='427.156723983796' />
+<score deviation='38.1498555372180' extraLength='52.5847469148730' dropouts='0' />
+</stroke>
+</strokes>
+<overlaps>
+<overlap firstStroke='2' secondStroke='3' x='3.81202645650751' y='-3.01911601508092' />
+<overlap firstStroke='4' secondStroke='5' x='12.3521096850271' y='-8.21454623898629' />
+<overlap firstStroke='4' secondStroke='8' x='9.06835899589048' y='-4.69289619630105' />
+<overlap firstStroke='5' secondStroke='6' x='1.69726419964992' y='-9.12875980135938' />
+<overlap firstStroke='10' secondStroke='11' x='10.7898749038136' y='2.38832369612592' />
+<overlap firstStroke='11' secondStroke='12' x='9.53030828496656' y='-0.677127941938483' />
+</overlaps>
+</hanReference>
+</hanReferences>
+<segments>
+<segment baseFirst='4' baseLast='66' coherent='false'>
+<point x='0.00000000000000' y='0.00000000000000' />
+<point x='0.00000000000000' y='1.00000000000000' />
+<point x='-1.16582199079856' y='2.16582199079856' />
+<point x='-1.16582199079856' y='-0.552459837660483' />
+<point x='-1.16582199079856' y='0.447540162339517' />
+<point x='-1.87292877198511' y='-0.259566618847031' />
+<point x='-1.87292877198511' y='1.38915465185310' />
+<point x='-1.87292877198511' y='4.10743648031214' />
+<point x='-1.87292877198511' y='1.38915465185310' />
+<point x='-1.16582199079856' y='2.09626143303964' />
+<point x='-2.81454326149869' y='2.09626143303964' />
+<point x='-0.0962614330396447' y='2.09626143303964' />
+<point x='-1.09626143303964' y='2.09626143303964' />
+<point x='-0.389154651853097' y='1.38915465185310' />
+<point x='0.610845348146903' y='1.38915465185310' />
+<point x='0.610845348146903' y='2.38915465185310' />
+<point x='-0.0962614330396447' y='3.09626143303964' />
+<point x='-1.26208342383821' y='1.93043944224108' />
+<point x='-1.26208342383821' y='4.64872127070013' />
+<point x='-0.262083423838207' y='4.64872127070013' />
+<point x='-0.262083423838207' y='3.00000000000000' />
+<point x='-0.262083423838207' y='4.00000000000000' />
+</segment>
+<segment baseFirst='67' baseLast='75' coherent='true'>
+<point x='-0.262083423838207' y='4.00000000000000' />
+<point x='-1.42790541463677' y='2.83417800920144' />
+<point x='-2.59372740543533' y='1.66835601840287' />
+<point x='-1.42790541463677' y='0.502534027604313' />
+</segment>
+<segment baseFirst='76' baseLast='81' coherent='false'>
+<point x='-1.42790541463677' y='0.502534027604313' />
+<point x='1.29037641382228' y='0.502534027604313' />
+<point x='0.290376413822276' y='0.502534027604313' />
+</segment>
+<segment baseFirst='82' baseLast='99' coherent='true'>
+<point x='0.290376413822276' y='0.502534027604313' />
+<point x='0.997483195008824' y='-0.204572753582235' />
+<point x='2.16330518580739' y='-1.37039474438080' />
+<point x='3.32912717660595' y='-2.53621673517936' />
+<point x='4.03623395779250' y='-3.24332351636591' />
+<point x='5.03623395779250' y='-3.24332351636591' />
+<point x='5.03623395779250' y='-4.24332351636591' />
+</segment>
+<segment baseFirst='100' baseLast='132' coherent='false'>
+<point x='5.03623395779250' y='-4.24332351636591' />
+<point x='3.87041196699393' y='-3.07750152556734' />
+<point x='2.87041196699393' y='-3.07750152556734' />
+<point x='4.51913323769406' y='-3.07750152556734' />
+<point x='3.81202645650751' y='-2.37039474438080' />
+<point x='3.10491967532097' y='-3.07750152556734' />
+<point x='3.10491967532097' y='-4.72622279626747' />
+<point x='4.27074166611953' y='-3.56040080546891' />
+<point x='4.97784844730608' y='-2.85329402428236' />
+<point x='3.97784844730608' y='-2.85329402428236' />
+<point x='4.97784844730608' y='-2.85329402428236' />
+<point x='4.97784844730608' y='-1.85329402428236' />
+</segment>
+<segment baseFirst='133' baseLast='186' coherent='true'>
+<point x='4.97784844730608' y='-1.85329402428236' />
+<point x='3.81202645650751' y='-3.01911601508092' />
+<point x='2.81202645650751' y='-3.01911601508092' />
+<point x='1.64620446570895' y='-1.85329402428236' />
+<point x='0.480382474910390' y='-0.687472033483801' />
+<point x='-0.519617525089610' y='-0.687472033483801' />
+<point x='-2.16833879578974' y='-0.687472033483801' />
+<point x='-1.46123201460319' y='-1.39457881467035' />
+<point x='-0.754125233416643' y='-2.10168559585690' />
+<point x='-0.0470184522300949' y='-2.80879237704344' />
+<point x='-0.0470184522300949' y='-0.0905105485843980' />
+<point x='-0.754125233416643' y='0.616596232602150' />
+<point x='0.411696757381920' y='1.78241822340071' />
+<point x='1.11880353856847' y='1.07531144221416' />
+<point x='2.76752480926860' y='1.07531144221416' />
+<point x='3.47463159045514' y='1.78241822340071' />
+<point x='4.64045358125370' y='2.94824021419927' />
+<point x='4.64045358125370' y='3.94824021419927' />
+<point x='3.93334680006716' y='4.65534699538582' />
+</segment>
+<segment baseFirst='187' baseLast='213' coherent='false'>
+<point x='3.93334680006716' y='4.65534699538582' />
+<point x='5.58206807076728' y='4.65534699538582' />
+<point x='6.28917485195383' y='3.94824021419927' />
+<point x='5.58206807076728' y='4.65534699538582' />
+<point x='7.23078934146741' y='4.65534699538582' />
+<point x='6.06496735066885' y='3.48952500458726' />
+<point x='4.41624607996872' y='3.48952500458726' />
+<point x='5.58206807076728' y='4.65534699538582' />
+<point x='6.74789006156585' y='3.48952500458726' />
+<point x='6.74789006156585' y='4.48952500458726' />
+</segment>
+<segment baseFirst='214' baseLast='252' coherent='true'>
+<point x='6.74789006156585' y='4.48952500458726' />
+<point x='5.58206807076728' y='3.32370301378870' />
+<point x='5.58206807076728' y='0.605421185329652' />
+<point x='4.41624607996872' y='-0.560400805468910' />
+<point x='5.41624607996872' y='-0.560400805468910' />
+<point x='6.12335286115527' y='-1.26750758665546' />
+<point x='6.12335286115527' y='-3.98578941511450' />
+<point x='7.77207413185540' y='-3.98578941511450' />
+<point x='8.47918091304195' y='-4.69289619630105' />
+<point x='9.47918091304195' y='-4.69289619630105' />
+<point x='10.1862876942285' y='-5.40000297748760' />
+<point x='11.1862876942285' y='-5.40000297748760' />
+<point x='12.3521096850271' y='-6.56582496828616' />
+<point x='12.3521096850271' y='-8.21454623898629' />
+</segment>
+<segment baseFirst='253' baseLast='300' coherent='false'>
+<point x='12.3521096850271' y='-8.21454623898629' />
+<point x='13.5179316758256' y='-7.04872424818772' />
+<point x='11.8692104051255' y='-7.04872424818772' />
+<point x='12.5763171863120' y='-6.34161746700118' />
+<point x='13.2834239674986' y='-7.04872424818772' />
+<point x='12.2834239674986' y='-7.04872424818772' />
+<point x='12.9905307486851' y='-7.75583102937427' />
+<point x='11.9905307486851' y='-7.75583102937427' />
+<point x='12.6976375298717' y='-7.04872424818772' />
+<point x='12.6976375298717' y='-5.40000297748760' />
+<point x='11.5318155390731' y='-6.56582496828616' />
+<point x='13.1805368097732' y='-6.56582496828616' />
+<point x='10.4622549813142' y='-6.56582496828616' />
+<point x='10.4622549813142' y='-8.21454623898629' />
+<point x='13.1805368097732' y='-8.21454623898629' />
+<point x='12.4734300285867' y='-7.50743945779974' />
+<point x='14.1221512992868' y='-7.50743945779974' />
+</segment>
+<segment baseFirst='301' baseLast='327' coherent='true'>
+<point x='14.1221512992868' y='-7.50743945779974' />
+<point x='13.4150445181003' y='-8.21454623898629' />
+<point x='11.7663232474002' y='-8.21454623898629' />
+<point x='9.04804141894111' y='-8.21454623898629' />
+<point x='6.32975959048206' y='-8.21454623898629' />
+<point x='5.32975959048206' y='-8.21454623898629' />
+<point x='2.61147776202302' y='-8.21454623898629' />
+<point x='1.90437098083647' y='-8.92165302017283' />
+<point x='1.19726419964992' y='-9.62875980135938' />
+<point x='0.197264199649922' y='-9.62875980135938' />
+</segment>
+<segment baseFirst='328' baseLast='357' coherent='false'>
+<point x='0.197264199649922' y='-9.62875980135938' />
+<point x='1.19726419964992' y='-9.62875980135938' />
+<point x='1.90437098083647' y='-10.3358665825459' />
+<point x='0.904370980836470' y='-10.3358665825459' />
+<point x='0.197264199649922' y='-9.62875980135938' />
+<point x='0.197264199649922' y='-12.3470416298184' />
+<point x='0.197264199649922' y='-11.3470416298184' />
+<point x='-0.509842581536625' y='-12.0541484110050' />
+<point x='0.490157418463375' y='-12.0541484110050' />
+<point x='-0.675664572335187' y='-13.2199704018035' />
+<point x='0.0314422088513603' y='-13.9270771829901' />
+</segment>
+<segment baseFirst='358' baseLast='375' coherent='true'>
+<point x='0.0314422088513603' y='-13.9270771829901' />
+<point x='0.0314422088513603' y='-11.2087953545310' />
+<point x='1.19726419964992' y='-10.0429733637325' />
+<point x='1.90437098083647' y='-9.33586658254593' />
+<point x='1.19726419964992' y='-8.62875980135938' />
+<point x='-0.451457071050205' y='-8.62875980135938' />
+<point x='-1.15856385223675' y='-9.33586658254593' />
+</segment>
+<segment baseFirst='376' baseLast='387' coherent='false'>
+<point x='-1.15856385223675' y='-9.33586658254593' />
+<point x='-1.15856385223675' y='-8.33586658254593' />
+<point x='-1.15856385223675' y='-7.33586658254593' />
+<point x='-1.15856385223675' y='-8.33586658254593' />
+<point x='1.55971797622229' y='-8.33586658254593' />
+</segment>
+<segment baseFirst='388' baseLast='399' coherent='true'>
+<point x='1.55971797622229' y='-8.33586658254593' />
+<point x='0.852611195035744' y='-7.62875980135938' />
+<point x='-0.313210795762818' y='-6.46293781056082' />
+<point x='-1.02031757694937' y='-5.75583102937427' />
+<point x='-2.18613956774793' y='-4.59000903857571' />
+</segment>
+<segment baseFirst='400' baseLast='459' coherent='false'>
+<point x='-2.18613956774793' y='-4.59000903857571' />
+<point x='-1.18613956774793' y='-4.59000903857571' />
+<point x='-0.0203175769493655' y='-5.75583102937427' />
+<point x='-1.02031757694937' y='-5.75583102937427' />
+<point x='-1.02031757694937' y='-4.75583102937427' />
+<point x='-0.0203175769493655' y='-4.75583102937427' />
+<point x='-0.727424358135913' y='-5.46293781056082' />
+<point x='0.438397632662649' y='-4.29711581976226' />
+<point x='1.60421962346121' y='-5.46293781056082' />
+<point x='0.897112842274664' y='-6.17004459174737' />
+<point x='1.60421962346121' y='-5.46293781056082' />
+<point x='1.60421962346121' y='-4.46293781056082' />
+<point x='1.60421962346121' y='-5.46293781056082' />
+<point x='2.77004161425977' y='-4.29711581976226' />
+<point x='2.77004161425977' y='-3.29711581976226' />
+<point x='2.77004161425977' y='-4.29711581976226' />
+<point x='3.93586360505834' y='-3.13129382896369' />
+<point x='3.93586360505834' y='-2.13129382896369' />
+<point x='3.93586360505834' y='-4.84957565742274' />
+<point x='4.64297038624488' y='-5.55668243860929' />
+<point x='1.92468855778584' y='-5.55668243860929' />
+</segment>
+<segment baseFirst='460' baseLast='486' coherent='true'>
+<point x='1.92468855778584' y='-5.55668243860929' />
+<point x='2.63179533897239' y='-4.84957565742274' />
+<point x='5.35007716743143' y='-4.84957565742274' />
+<point x='6.35007716743143' y='-4.84957565742274' />
+<point x='9.06835899589048' y='-4.84957565742274' />
+<point x='9.06835899589048' y='-3.84957565742274' />
+<point x='10.0683589958905' y='-3.84957565742274' />
+<point x='11.2341809866890' y='-2.68375366662418' />
+<point x='13.9524628151481' y='-2.68375366662418' />
+<point x='14.6595695963346' y='-1.97664688543763' />
+</segment>
+<segment baseFirst='487' baseLast='579' coherent='false'>
+<point x='14.6595695963346' y='-1.97664688543763' />
+<point x='13.4937476055361' y='-3.14246887623619' />
+<point x='13.4937476055361' y='-0.424187047777147' />
+<point x='12.7866408243495' y='-1.13129382896369' />
+<point x='15.5049226528086' y='-1.13129382896369' />
+<point x='14.7978158716220' y='-1.83840061015024' />
+<point x='13.6319938808235' y='-0.672578619351679' />
+<point x='14.7978158716220' y='-1.83840061015024' />
+<point x='15.7978158716220' y='-1.83840061015024' />
+<point x='15.0907090904355' y='-1.13129382896369' />
+<point x='13.9248870996369' y='-2.29711581976226' />
+<point x='13.9248870996369' y='-1.29711581976226' />
+<point x='13.9248870996369' y='-0.297115819762256' />
+<point x='13.2177803184504' y='-1.00422260094880' />
+<point x='13.9248870996369' y='-0.297115819762256' />
+<point x='12.2761658289368' y='-0.297115819762256' />
+<point x='13.9248870996369' y='-0.297115819762256' />
+<point x='13.9248870996369' y='0.702884180237744' />
+<point x='12.7590651088383' y='1.86870617103631' />
+<point x='13.7590651088383' y='1.86870617103631' />
+<point x='14.4661718900249' y='2.57581295222285' />
+<point x='13.7590651088383' y='1.86870617103631' />
+<point x='14.4661718900249' y='2.57581295222285' />
+<point x='15.1732786712114' y='1.86870617103631' />
+<point x='15.1732786712114' y='-0.849575657422739' />
+<point x='15.1732786712114' y='0.150424342577261' />
+<point x='14.4661718900249' y='-0.556682438609287' />
+<point x='13.3003498992263' y='0.609139552189275' />
+<point x='14.4661718900249' y='1.77496154298784' />
+<point x='12.8174506193248' y='1.77496154298784' />
+<point x='12.1103438381382' y='2.48206832417439' />
+<point x='13.2761658289368' y='1.31624633337582' />
+</segment>
+<segment baseFirst='580' baseLast='588' coherent='true'>
+<point x='13.2761658289368' y='1.31624633337582' />
+<point x='12.5690590477502' y='2.02335311456237' />
+<point x='11.5690590477502' y='2.02335311456237' />
+<point x='10.8619522665637' y='2.73045989574892' />
+</segment>
+<segment baseFirst='589' baseLast='615' coherent='false'>
+<point x='10.8619522665637' y='2.73045989574892' />
+<point x='11.5690590477502' y='2.02335311456237' />
+<point x='12.2761658289368' y='1.31624633337582' />
+<point x='12.2761658289368' y='2.31624633337582' />
+<point x='13.4419878197353' y='1.15042434257726' />
+<point x='11.7932665490352' y='1.15042434257726' />
+<point x='10.6274445582367' y='-0.0153976482213012' />
+<point x='12.2761658289368' y='-0.0153976482213012' />
+<point x='11.1103438381382' y='1.15042434257726' />
+<point x='10.4032370569517' y='0.443317561390713' />
+</segment>
+<segment baseFirst='616' baseLast='627' coherent='true'>
+<point x='10.4032370569517' y='0.443317561390713' />
+<point x='11.5690590477502' y='1.60913955218928' />
+<point x='10.4032370569517' y='2.77496154298784' />
+<point x='9.23741506615311' y='3.94078353378640' />
+<point x='8.07159307535454' y='2.77496154298784' />
+</segment>
+<segment baseFirst='628' baseLast='639' coherent='false'>
+<point x='8.07159307535454' y='2.77496154298784' />
+<point x='8.07159307535454' y='3.77496154298784' />
+<point x='8.77869985654109' y='4.48206832417439' />
+<point x='8.07159307535454' y='3.77496154298784' />
+<point x='10.7898749038136' y='3.77496154298784' />
+</segment>
+<segment baseFirst='640' baseLast='669' coherent='true'>
+<point x='10.7898749038136' y='3.77496154298784' />
+<point x='10.7898749038136' y='2.12624027228771' />
+<point x='9.62405291301503' y='0.960418281489148' />
+<point x='8.91694613182848' y='0.253311500302600' />
+<point x='8.91694613182848' y='-0.746688499697400' />
+<point x='7.26822486112835' y='-0.746688499697400' />
+<point x='7.26822486112835' y='-1.74668849969740' />
+<point x='8.26822486112835' y='-1.74668849969740' />
+<point x='9.43404685192691' y='-0.580866508898838' />
+<point x='10.1411536331135' y='-1.28797329008539' />
+<point x='11.7898749038136' y='-1.28797329008539' />
+</segment>
+<segment baseFirst='670' baseLast='699' coherent='false'>
+<point x='11.7898749038136' y='-1.28797329008539' />
+<point x='11.0827681226270' y='-1.99508007127193' />
+<point x='11.0827681226270' y='-0.995080071271933' />
+<point x='10.0827681226270' y='-0.995080071271933' />
+<point x='11.2485901134256' y='0.170741919526630' />
+<point x='11.2485901134256' y='-1.47797935117350' />
+<point x='11.9556968946121' y='-0.770872569986951' />
+<point x='11.9556968946121' y='0.229127430013049' />
+<point x='10.7898749038136' y='-0.936694560785513' />
+<point x='11.7898749038136' y='-0.936694560785513' />
+<point x='12.9556968946121' y='-2.10251655158407' />
+</segment>
+<segment baseFirst='700' baseLast='729' coherent='true'>
+<point x='12.9556968946121' y='-2.10251655158407' />
+<point x='10.2374150661531' y='-2.10251655158407' />
+<point x='9.53030828496656' y='-1.39540977039753' />
+<point x='9.53030828496656' y='-0.395409770397527' />
+<point x='10.5303082849666' y='-0.395409770397527' />
+<point x='11.2374150661531' y='0.311697010789020' />
+<point x='11.9445218473397' y='-0.395409770397527' />
+<point x='12.9445218473397' y='-0.395409770397527' />
+<point x='13.6516286285262' y='0.311697010789020' />
+<point x='13.6516286285262' y='1.31169701078902' />
+<point x='13.6516286285262' y='2.31169701078902' />
+</segment>
+<segment baseFirst='730' baseLast='747' coherent='false'>
+<point x='13.6516286285262' y='2.31169701078902' />
+<point x='14.3587354097127' y='1.60459022960247' />
+<point x='15.0658421908993' y='0.897483448415925' />
+<point x='14.0658421908993' y='0.897483448415925' />
+<point x='15.2316641816979' y='2.06330543921449' />
+<point x='15.9387709628844' y='2.77041222040103' />
+<point x='15.9387709628844' y='0.0521303919419895' />
+</segment>
+</segments>
+</gene>
+</genes>
+</genome>

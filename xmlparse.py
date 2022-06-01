@@ -192,7 +192,6 @@ def drawXml(segments, output_size=(32, 32), border=4):
                 y1 = -(y1-output_size[1]/2)+output_size[1]/2
                 y2 = -(y2-output_size[1]/2)+output_size[1]/2
                 draw.line(((x1, y1), (x2, y2)), width=1, fill=1)
-    img.save("test.png")
     return np.array(img).flatten().tobytes()
 
 if __name__ == "__main__":

@@ -13,8 +13,8 @@ def loadXy(data_dir, han_char):
     max_strokes = 0
     for f in dir_list:
         yX = open(f"{data_dir}/{han_char}/{f}", "rb").readlines()
-        y_data.append(float(yX[0]))
-        X_data.append(np.array([np.frombuffer(X, dtype=bool)[:-1].reshape(32, 32).astype(int) for X in yX[1:]]))
+        y_data.append(float(yX[1]))
+        X_data.append(np.array([np.frombuffer(X, dtype=bool)[:-1].reshape(32, 32).astype(int) for X in yX[2:]]))
         if X_data[-1].shape[0] > max_strokes:
             max_strokes = X_data[-1].shape[0]
     for i in range(len(X_data)):

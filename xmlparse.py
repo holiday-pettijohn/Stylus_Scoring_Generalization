@@ -59,7 +59,7 @@ def scanDir(xdir, out_dir="./HanBitmap", recursive=False, verbose=0, from_recurs
     else:
         return files_X, files_y
 
-def xmlToBitmap(xfile):
+def xmlToBitmap(xfile, output_size=(32, 32), border=4):
     """
     Convert an XML character genome file to a bitmap array representing the character
     Saves the fitness score of said genome along with the bitmap
@@ -69,7 +69,7 @@ def xmlToBitmap(xfile):
     score = root["genome"]["statistics"]["@score"]
     han_char = root["genome"]["genes"]["gene"]["hanReferences"]["hanReference"]["@unicode"]
     segments = root["genome"]["genes"]["gene"]["segments"]["segment"]
-    drawn_char = drawXml(segments)
+    drawn_char = drawXml(segments, output_size=output_size, border=border)
     return (han_char, score, drawn_char)
 
 def drawXml(segments, output_size=(32, 32), border=4):
@@ -110,7 +110,7 @@ def drawXml(segments, output_size=(32, 32), border=4):
                 draw.line(((x1, y1), (x2, y2)), width=1, fill=1)
     return np.array(img).flatten().tobytes()
 
-def xmlToSegments(xfile):
+def xmlToSegments(xfile, output_size=(32, 32), border=4):
     """
     Convert an XML character genome file to a bitmap array representing the character
     Saves the fitness score of said genome along with the bitmap
@@ -120,7 +120,7 @@ def xmlToSegments(xfile):
     score = root["genome"]["statistics"]["@score"]
     han_char = root["genome"]["genes"]["gene"]["hanReferences"]["hanReference"]["@unicode"]
     segments = root["genome"]["genes"]["gene"]["segments"]["segment"]
-    drawn_char = drawSegments(segments)
+    drawn_char = drawSegments(segments, output_size=output_size, border=border)
     return (han_char, score, drawn_char)
 
 def drawSegments(segments, output_size=(32, 32), border=4):
@@ -164,6 +164,90 @@ def drawSegments(segments, output_size=(32, 32), border=4):
             imgs += np.array(img).flatten().tobytes() + b"\n"
     return imgs
 
+def xmlToGeometry(xfile, output_size=(32, 32), border=0):
+    xml_data = open(xfile, "r").read()
+    root = xmltodict.parse(xml_data)
+    segments = root["genome"]["genes"]["gene"]["segments"]["segment"]
+    seg_list = []
+    frac_dists = []
+    minx, miny, maxx, maxy = None, None, None, None
+    for segment in segments:
+        if segment["@coherent"] == "true":
+            for point in segment["point"]:
+                if minx is None:
+                    minx = float(point["@x"])
+                if miny is None:
+                    miny = float(point["@y"])
+                if maxx is None:
+                    maxx = float(point["@x"])
+                if maxy is None:
+                    maxy = float(point["@y"])
+                if float(point["@x"]) > maxx:
+                    maxx = float(point["@x"])
+                if float(point["@x"]) < minx:
+                    minx = float(point["@x"])
+                if float(point["@y"]) > maxy:
+                    maxy = float(point["@y"])
+                if float(point["@y"]) < miny:
+                    miny = float(point["@y"])
+    for segment in segments:
+        if segment["@coherent"] == "true":
+            points = []
+            for p in segment["point"]:
+                x, y = ((float(p["@x"])-minx)*((output_size[0]-border)/(maxx-minx))+border/2,
+                        (float(p["@y"])-miny)*((output_size[1]-border)/(maxy-miny))+border/2,)
+                points.append((x, y))
+            seg_list.append(np.array(points))
+    for segment in seg_list:
+        dists = [0]
+        for i in range(len(segment)-1):
+            dists.append(np.linalg.norm((segment[i]-segment[i+1]))+dists[-1])
+        dists = np.array(dists)
+        dists /= dists.max()
+        frac_dists.append(dists)
+    return seg_list, frac_dists
+
+def loadRef(han_char, ref_dir = "Reference"):
+    stroke_list = []
+    frac_dists = []
+    ref_path = f"{ref_dir}/{han_char[0]}000/{han_char}.han"
+    ref_xml = open(ref_path, "r").read()
+    root = xmltodict.parse(ref_xml)
+    bounds = root["hanDefinition"]["bounds"]
+    x_min, y_min, x_max, y_max = (float(bounds["@left"]), float(bounds["@bottom"]), float(bounds["@right"]), float(bounds["@top"]))
+    scale = (int(x_max-x_min), int(y_max-y_min))
+    strokes = root["hanDefinition"]["strokes"]["stroke"]
+    for stroke in strokes:
+        points = stroke["points"]["forward"]
+        point_arr = []
+        frac_arr = []
+        for point in points["pointDistance"]:
+            point_arr.append((float(point["@x"])-x_min,
+                              float(point["@y"])-y_min))
+            frac_arr.append(float(point["@fractionalDistance"]))
+        stroke_list.append(np.array(point_arr))
+        frac_dists.append(np.array(frac_arr))
+    return stroke_list, frac_dists, scale
+    
+def loadGeometry(data_dir, han_char, output_size = (32, 32), f_read = None):
+    """
+    Loads geometric data about a gene characetr directly from the XML source
+    """
+    if f_read is None:
+        dir_list = os.listdir(f"{data_dir}/{han_char}")
+        dir_list.sort()
+    else:
+        dir_list = f_read
+    g_data = []
+    f_names = []
+    for f in dir_list:
+        flines = open(f"{data_dir}/{han_char}/{f}", "rb").readlines()
+        f_names.append(flines[0].decode()[:-1])
+    for f in f_names:
+        g = xmlToGeometry(f, output_size)
+        g_data.append(g)
+    return g_data
+
 def scanSegments(xdir, out_dir="./HanBitmap", recursive=False, verbose=0, from_recursive=False, han_i={}):
     """
     Iterates over a directory and scans all of the gene files within, outputting them in the form of bitmap (X) and score (y)
@@ -189,7 +273,7 @@ def scanSegments(xdir, out_dir="./HanBitmap", recursive=False, verbose=0, from_r
                 if not han_char in han_i_new:
                     han_i_new[han_char] = 0
                 dfile = open(f"{out_dir}/{han_char}/{han_i[han_char]}", "wb")
-                dfile.write(bytes(score, "UTF-8")+b"\n"+bitmap)
+                dfile.write(bytes(f"{xdir}/{f}", "UTF-8")+b"\n"+bytes(score, "UTF-8")+b"\n"+bitmap)
                 han_i[han_char] += 1
                 han_i_new[han_char] += 1
     if int(verbose) >= 1:

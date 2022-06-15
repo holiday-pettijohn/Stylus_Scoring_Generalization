@@ -14,7 +14,7 @@ def loadXy(data_dir):
         han_char = f.split("_")[0]
         if f.endswith("_X"):
             Xs = open(f"{data_dir}/{f}", "rb").readlines()
-            X_data[han_char] = [np.frombuffer(X, dtype=bool)[:-1].reshape(32, 32).astype(int) for X in Xs[2:]]
+            X_data[han_char] = [np.frombuffer(X, dtype=bool)[:-1].reshape(32, 32).astype(int) for X in Xs]
         if f.endswith("_y"):
             ys = open(f"{data_dir}/{f}", "r").readlines()
             y_data[han_char] = np.array([float(a) for a in ys])

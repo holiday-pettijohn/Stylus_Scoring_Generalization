@@ -13,7 +13,7 @@ def alignStrokes(strokes, ref, p_strokes, p_ref):
         stroke_map[candidate] = i
     # resolve conflicts until only one stroke is mapped to each reference stroke
     # the condition is based on the 'bad' candidates being set to -1, indicating no match
-    while np.unique(stroke_map).shape[0] != len(strokes) - (1 if len(strokes)-len(ref) > 0 else 0):
+    while np.unique(stroke_map).shape[0] != len(strokes) - (len(strokes)-len(ref)-1 if len(strokes)-len(ref) > 1 else 0):
         # conflict resolution is still rudimentery
         for i in range(len(stroke_map)):
             if stroke_map[i] == -1:

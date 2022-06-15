@@ -256,6 +256,8 @@ def scanSegments(xdir, out_dir="./HanBitmap", recursive=False, verbose=0, from_r
         print(f"Scanning directiory {xdir}...")
     dir_list = os.listdir(xdir)
     han_i_new = {}
+    if not path.isdir(out_dir):
+        os.mkdir(out_dir)
     for f in dir_list:
         if not f.startswith("."):
             if path.isdir(os.path.join(xdir, f)) and recursive:

@@ -194,8 +194,12 @@ def xmlToGeometry(xfile, output_size=(32, 32), border=0):
         if segment["@coherent"] == "true":
             points = []
             for p in segment["point"]:
-                x, y = ((float(p["@x"])-minx)*((output_size[0]-border)/(maxx-minx))+border/2,
-                        (float(p["@y"])-miny)*((output_size[1]-border)/(maxy-miny))+border/2,)
+                if (output_size[0] == -1 or output_size[1] == -1):
+                    x, y = (float(p["@x"]),
+                            float(p["@y"]))
+                else:
+                    x, y = ((float(p["@x"])-minx)*((output_size[0]-border)/(maxx-minx))+border/2,
+                            (float(p["@y"])-miny)*((output_size[1]-border)/(maxy-miny))+border/2,)
                 points.append((x, y))
             seg_list.append(np.array(points))
     for segment in seg_list:

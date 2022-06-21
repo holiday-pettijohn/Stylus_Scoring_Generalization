@@ -13,7 +13,8 @@ def alignStrokes(strokes, ref, p_strokes, p_ref):
         stroke_map[candidate] = i
     # resolve conflicts until only one stroke is mapped to each reference stroke
     # the condition is based on the 'bad' candidates being set to -1, indicating no match
-    while np.unique(stroke_map).shape[0] != len(strokes) - (len(strokes)-len(ref)-1 if len(strokes)-len(ref) > 1 else 0):
+    while (np.unique(stroke_map).shape[0] != len(strokes) - (len(strokes)-len(ref)-1 if len(strokes)-len(ref) > 1 else 0)
+           or (-1 in stroke_map) if len(strokes) == len(ref) else False):
         # conflict resolution is still rudimentery
         for i in range(len(stroke_map)):
             if stroke_map[i] == -1:
@@ -42,7 +43,7 @@ def strokeError(stroke, ref_stroke, p_stroke, p_ref, mode="max"):
         forward_ref_error[i] = np.linalg.norm((point-strokeTrace(ref_stroke, p_ref, progress)))
     for i, point, progress in zip(range(len(stroke)), stroke[::-1], p_stroke[::-1]):
         back_ref_error[i] = np.linalg.norm((point-strokeTrace(ref_stroke, p_ref, 1-progress)))
-    final_error = min(forward_stroke_error.max()+forward_ref_error.max(), back_stroke_error.max()+back_ref_error.max())
+    final_error = min(max(forward_stroke_error.max(), forward_ref_error.max()), max(back_stroke_error.max(), back_ref_error.max()))
     return final_error
 
 def strokeTrace(stroke, stroke_progresses, progress):

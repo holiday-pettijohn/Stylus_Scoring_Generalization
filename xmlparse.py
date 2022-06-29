@@ -118,10 +118,10 @@ def extractBases(xfile):
     root = xmltodict.parse(xml_data)
     bases = root["genome"]["bases"]
     strokes = root["genome"]["genes"]["gene"]["hanReferences"]["hanReference"]["strokes"]["stroke"]
-    ordered_strokes = {int(s["@correspondsTo"]): (int(s["@baseFirst"]), int(s["@baseLast"])) for s in strokes}
-    ordered_stroke_list = np.array([ordered_strokes[i+1] for i in range(len(ordered_strokes))])
+    stroke_series = [(int(s["@baseFirst"]), int(s["@baseLast"])) for s in strokes]
+    stroke_order = np.array([int(s["@correspondsTo"]) for s in strokes])
     han_char = root["genome"]["genes"]["gene"]["hanReferences"]["hanReference"]["@unicode"]
-    return (han_char, bases, ordered_stroke_list)
+    return (han_char, bases, stroke_series, stroke_order)
 
 def minXml(han_char, bases, stroke_bases, stroke_order):
     """
@@ -130,9 +130,9 @@ def minXml(han_char, bases, stroke_bases, stroke_order):
     xml = b"<?xml version='1.0' encoding='UTF-8' ?>\n<genome xmlns='http://biologicinstitute.org/schemas/stylus/1.5'>\n"
     xml += bytes(f"<bases>{bases}</bases>\n", "UTF-8")
     xml += bytes(f"<genes>\n<gene baseFirst='1' baseLast='{len(bases)}'>\n<hanReferences>\n<hanReference unicode='{han_char}'>\n<strokes>\n", "UTF-8")
-    for i, base in enumerate(stroke_bases[stroke_order]):
+    for i, base in enumerate(stroke_bases):
         first, last = base
-        xml += bytes(f"<stroke baseFirst='{first}' baseLast='{last}' correspondsTo='{i+1}' />\n", "UTF-8")
+        xml += bytes(f"<stroke baseFirst='{first}' baseLast='{last}' correspondsTo='{stroke_order[i]}' />\n", "UTF-8")
     xml += b"</strokes>\n</hanReference>\n</hanReferences>\n</gene>\n</genes>\n</genome>"
     return xml
 
@@ -287,19 +287,20 @@ def loadGeometryBases(data_dir, han_char, output_size = (32, 32), f_read = None)
         dir_list.sort()
     else:
         dir_list = f_read
-    g_data, han_chars, base_data, ordered_strokes = [], [], [], []
+    g_data, han_chars, base_data, stroke_sets, stroke_orders = [], [], [], [], []
     f_names = []
     for f in dir_list:
         flines = open(f"{data_dir}/{han_char}/{f}", "rb").readlines()
         f_names.append(flines[0].decode()[:-1])
     for f in f_names:
         g = xmlToGeometry(f, output_size)
-        han_char, bases, ordered_stroke_list = extractBases(f)
+        han_char, bases, strokes, stroke_order = extractBases(f)
         g_data.append(g)
         han_chars.append(han_char)
         base_data.append(bases)
-        ordered_strokes.append(ordered_stroke_list)
-    return g_data, han_chars, base_data, ordered_strokes
+        stroke_sets.append(strokes)
+        stroke_orders.append(stroke_order)
+    return g_data, han_chars, base_data, stroke_sets, stroke_orders
 
 def scanSegments(xdir, out_dir="./HanBitmap", recursive=False, verbose=0, from_recursive=False, han_i={}):
     """

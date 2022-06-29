@@ -300,7 +300,7 @@ def loadGeometryBases(data_dir, han_char, output_size = (32, 32), f_read = None)
         base_data.append(bases)
         stroke_sets.append(strokes)
         stroke_orders.append(stroke_order)
-    return g_data, han_chars, base_data, stroke_sets, stroke_orders
+    return g_data, han_chars, base_data, stroke_sets, stroke_orders, f_names
 
 def scanSegments(xdir, out_dir="./HanBitmap", recursive=False, verbose=0, from_recursive=False, han_i={}):
     """

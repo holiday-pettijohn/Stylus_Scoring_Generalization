@@ -278,6 +278,25 @@ def loadGeometry(data_dir, han_char, output_size = (32, 32), f_read = None):
         g_data.append(g)
     return g_data
 
+def loadGeometryFNames(data_dir, han_char, output_size = (32, 32), f_read = None):
+    """
+    Loads geometric data about a gene characetr directly from the XML source
+    """
+    if f_read is None:
+        dir_list = os.listdir(f"{data_dir}/{han_char}")
+        dir_list.sort()
+    else:
+        dir_list = f_read
+    g_data = []
+    f_names = []
+    for f in dir_list:
+        flines = open(f"{data_dir}/{han_char}/{f}", "rb").readlines()
+        f_names.append(flines[0].decode()[:-1])
+    for f in f_names:
+        g = xmlToGeometry(f, output_size)
+        g_data.append(g)
+    return g_data, f_names
+
 def loadGeometryBases(data_dir, han_char, output_size = (32, 32), f_read = None):
     """
     Loads geometric data about a gene characetr directly from the XML source

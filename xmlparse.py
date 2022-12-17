@@ -321,6 +321,27 @@ def loadGeometryBases(data_dir, han_char, output_size = (32, 32), f_read = None)
         stroke_orders.append(stroke_order)
     return g_data, han_chars, base_data, stroke_sets, stroke_orders, f_names
 
+def loadScores(data_dir, han_char, f_read = None):
+    """
+    Loads gene score from XML source
+    """
+    if f_read is None:
+        dir_list = os.listdir(f"{data_dir}/{han_char}")
+        dir_list.sort()
+    else:
+        dir_list = f_read
+    scores = []
+    f_names = []
+    for f in dir_list:
+        flines = open(f"{data_dir}/{han_char}/{f}", "rb").readlines()
+        f_names.append(flines[0].decode()[:-1])
+    for f in f_names:
+        xml_data = open(f, "r").read()
+        root = xmltodict.parse(xml_data)
+        score = root["genome"]["statistics"]["@score"]
+        scores.append(score)
+    return scores
+
 def scanSegments(xdir, out_dir="./HanBitmap", recursive=False, verbose=0, from_recursive=False, han_i={}):
     """
     Iterates over a directory and scans all of the gene files within, outputting them in the form of bitmap (X) and score (y)

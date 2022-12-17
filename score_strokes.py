@@ -73,6 +73,47 @@ def alignStrokes(strokes, ref, p_strokes, p_ref):
 
     return stroke_map
 
+def alignStrokesResolve(strokes, ref, p_strokes, p_ref):
+    
+    # hack to ignore the last stroke due to dropout bug
+    strokes, p_strokes = strokes[:len(ref)], p_strokes[:len(ref)]
+    
+    error_maps = strokeErrorMatrix(strokes, ref, p_strokes, p_ref)
+
+    # function to get stroke length given a stroke value (in this case, a stroke value is a 2d list
+    # that contains an x coord in stroke[][0] and a y coord in stroke[][1])
+    def getStrokeLen(stroke):
+        length = 0 # adding all the lengths we get between two points to this variable
+        # while it looks a little complicated, this is just the pythagorean theorem applied between two coordinates, just 
+        # how one would calculate it on a graph: sqrt(a^2 + b^2)
+        for i in range(len(stroke)-1):
+            length += ((stroke[i][0] - stroke[i+1][0])**2 + (stroke[i][1] - stroke[i+1][1])**2)**0.5
+        return length
+
+    #get the lengths of each stroke for the order in the greedy algorithm
+    ref_lengths = []
+    for i in range(len(ref)):
+        ref_lengths.append(getStrokeLen(ref[i]))
+
+    # -1 just means unmatched here since 0 (the other 'default' filler) is a meaningful number in this context
+    stroke_map = np.full(len(ref), -1)
+
+    for each in ref_lengths:
+        largestref = np.argmax(ref_lengths) # this is the index for the reference stroke that is largest
+        smallerror = np.argmin(error_maps[largestref]) # access the error map from the largest stroke's index and see which error is smallest
+
+        while(stroke_map[smallerror]!=-1):
+            # change small error so that we do not repeat over indexes that are already taken
+            # just keeps repeating until we land on an index that doesn't already have a value in its place
+            error_maps[largestref][smallerror] = 10000
+            smallerror = np.argmin(error_maps[largestref])
+
+        stroke_map[smallerror] = largestref # set the index in the stroke_map to the reference stroke we designated
+
+        ref_lengths[largestref] = 0 # set the length of the reference stroke to 0 so we never use it again
+
+    return stroke_map
+
 def strokeErrorMatrix(strokes, ref, p_strokes, p_ref):
     error_map = np.zeros((len(ref), len(strokes)), dtype=float)
     matches_tried = np.zeros(len(strokes), dtype=int)

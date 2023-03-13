@@ -258,10 +258,11 @@ def loadRef(han_char, ref_dir = "Reference"):
         stroke_list.append(np.array(point_arr))
         frac_dists.append(np.array(frac_arr))
     return stroke_list, frac_dists, scale
-    
+
 def loadGeometry(data_dir, han_char, output_size = (32, 32), f_read = None):
     """
-    Loads geometric data about a gene characetr directly from the XML source
+    Loads geometric data about a gene character directly from the XML source
+    """
     """
     if f_read is None:
         dir_list = os.listdir(f"{data_dir}/{han_char}")
@@ -273,7 +274,8 @@ def loadGeometry(data_dir, han_char, output_size = (32, 32), f_read = None):
     for f in dir_list:
         flines = open(f"{data_dir}/{han_char}/{f}", "rb").readlines()
         f_names.append(flines[0].decode()[:-1])
-    for f in f_names:
+    """
+    for f in f_read:
         g = xmlToGeometry(f, output_size)
         g_data.append(g)
     return g_data

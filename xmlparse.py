@@ -275,8 +275,9 @@ def loadGeometry(data_dir, han_char, output_size = (32, 32), f_read = None):
         flines = open(f"{data_dir}/{han_char}/{f}", "rb").readlines()
         f_names.append(flines[0].decode()[:-1])
     """
+    g_data = []
     for f in f_read:
-        g = xmlToGeometry(f, output_size)
+        g = xmlToGeometry(f"{data_dir}/{f}", output_size)
         g_data.append(g)
     return g_data
 
@@ -303,16 +304,15 @@ def loadGeometryBases(data_dir, han_char, output_size = (32, 32), f_read = None)
     """
     Loads geometric data about a gene characetr directly from the XML source
     """
+    """
     if f_read is None:
         dir_list = os.listdir(f"{data_dir}/{han_char}")
         dir_list.sort()
     else:
         dir_list = f_read
+    """
     g_data, han_chars, base_data, stroke_sets, stroke_orders = [], [], [], [], []
-    f_names = []
-    for f in dir_list:
-        flines = open(f"{data_dir}/{han_char}/{f}", "rb").readlines()
-        f_names.append(flines[0].decode()[:-1])
+    f_names = [f"{data_dir}/{f}" for f in f_read]
     for f in f_names:
         g = xmlToGeometry(f, output_size)
         han_char, bases, strokes, stroke_order = extractBases(f)

@@ -148,11 +148,10 @@ def strokeTrace(stroke, stroke_progresses, progress):
     norm_progress = (progress-startp)/endp
     if stroke[progress_line+1][0] == stroke[progress_line][0]:
         x = stroke[progress_line][0]
-        y = norm_progress*(stroke[progress_line+1][1]-stroke[progress_line][1])+stroke[progress_line][0]
+        y = norm_progress*(stroke[progress_line+1][1]-stroke[progress_line][1])+stroke[progress_line][1]
     else:
         slope = (stroke[progress_line+1][1]-stroke[progress_line][1])/(stroke[progress_line+1][0]-stroke[progress_line][0])
         intercept = stroke[progress_line][1]-slope*stroke[progress_line][0]
         x = norm_progress*(stroke[progress_line+1][0]-stroke[progress_line][0])+stroke[progress_line][0]
         y = slope*x + intercept
     return np.array((x, y))
-

@@ -2,6 +2,7 @@
 
 import argparse
 import os
+import re
 import xmltodict
 
 import matplotlib.pyplot as plt
@@ -12,6 +13,16 @@ from matplotlib import collections as mc
 from os import path
 from PIL import Image, ImageDraw
 
+import stylusengine
+
+stylusengine.setLogFile(b'errors.log')
+
+stylusengine.setScope(
+    b'file:///home/tulip/Documents/College/Stewart/stylusapp/hans',
+    b'file:///home/tulip/Documents/College/Stewart/stylus/schemas'
+)
+
+
 def scanDir(xdir, out_dir="./HanBitmap", recursive=False, verbose=0, from_recursive=False):
     """
     Iterates over a directory and scans all of the gene files within, outputting them in the form of bitmap (X) and score (y)
@@ -19,6 +30,7 @@ def scanDir(xdir, out_dir="./HanBitmap", recursive=False, verbose=0, from_recurs
     if (int(verbose) >= 1 and not from_recursive) or (int(verbose) >= 2):
         print(f"Scanning directiory {xdir}...")
     dir_list = os.listdir(xdir)
+    dir_list.sort()
     files_X = {}
     files_y = {}
     gene_count = 0
@@ -122,6 +134,22 @@ def extractBases(xfile):
     stroke_order = np.array([int(s["@correspondsTo"]) for s in strokes])
     han_char = root["genome"]["genes"]["gene"]["hanReferences"]["hanReference"]["@unicode"]
     return (han_char, bases, stroke_series, stroke_order)
+
+def getXmlScore(xml_bstring, save_xml="", save_min=""):
+    stylusengine.setGenome(xml_bstring, b"")
+    g = stylusengine.getGenome([b"all"]).decode()
+    if save_xml:
+        f = open(save_xml, "w")
+        f.write(g)
+        f.close()
+    if save_min:
+        f = open(save_min, "w")
+        f.write(xml_bstring.decode())
+        f.close()
+    score = float(
+            re.search(r"score='([e\d.+-]+)'", g).group(1)
+        )
+    return score
 
 def minXml(han_char, bases, stroke_bases, stroke_order):
     """
@@ -238,6 +266,16 @@ def xmlToGeometry(xfile, output_size=(32, 32), border=0):
     return seg_list, frac_dists
 
 def loadRef(han_char, ref_dir = "Reference"):
+    """
+    Load the data for an archetype character given the UTF-8 name of the character
+    Input:
+    han_char: String containing the UTF-8 name of the character
+    ref_dir: Directory containing the XML archetype files
+    Output:
+    stroke_list: List of strokes from the archetype
+    frac_dist: Fractional distance of the endpoints of each of the strokes
+    scale: (x_min, y_min, x_max, y_max) minimum and maximum bounds on archetype strokes
+    """
     stroke_list = []
     frac_dists = []
     ref_path = f"{ref_dir}/{han_char[0]}000/{han_char}.han"
@@ -263,18 +301,6 @@ def loadGeometry(data_dir, han_char, output_size = (32, 32), f_read = None):
     """
     Loads geometric data about a gene character directly from the XML source
     """
-    """
-    if f_read is None:
-        dir_list = os.listdir(f"{data_dir}/{han_char}")
-        dir_list.sort()
-    else:
-        dir_list = f_read
-    g_data = []
-    f_names = []
-    for f in dir_list:
-        flines = open(f"{data_dir}/{han_char}/{f}", "rb").readlines()
-        f_names.append(flines[0].decode()[:-1])
-    """
     g_data = []
     for f in f_read:
         g = xmlToGeometry(f"{data_dir}/{f}", output_size)
@@ -295,27 +321,25 @@ def loadGeometryFNames(data_dir, han_char, output_size = (32, 32), f_read = None
     for f in dir_list:
         flines = open(f"{data_dir}/{han_char}/{f}", "rb").readlines()
         f_names.append(flines[0].decode()[:-1])
+    f_names.sort()
     for f in f_names:
         g = xmlToGeometry(f, output_size)
         g_data.append(g)
     return g_data, f_names
 
-def loadGeometryBases(data_dir, han_char, output_size = (32, 32), f_read = None):
+def loadGeometryBases(data_dir, output_size = (32, 32), f_read = None):
     """
     Loads geometric data about a gene characetr directly from the XML source
     """
-    """
     if f_read is None:
-        dir_list = os.listdir(f"{data_dir}/{han_char}")
-        dir_list.sort()
+        f_names = os.listdir(data_dir)
+        f_names.sort()
     else:
-        dir_list = f_read
-    """
+        f_names = f_read
     g_data, han_chars, base_data, stroke_sets, stroke_orders = [], [], [], [], []
-    f_names = [f"{data_dir}/{f}" for f in f_read]
     for f in f_names:
-        g = xmlToGeometry(f, output_size)
-        han_char, bases, strokes, stroke_order = extractBases(f)
+        g = xmlToGeometry(f"{data_dir}/{f}", output_size)
+        han_char, bases, strokes, stroke_order = extractBases(f"{data_dir}/{f}")
         g_data.append(g)
         han_chars.append(han_char)
         base_data.append(bases)
@@ -323,24 +347,20 @@ def loadGeometryBases(data_dir, han_char, output_size = (32, 32), f_read = None)
         stroke_orders.append(stroke_order)
     return g_data, han_chars, base_data, stroke_sets, stroke_orders, f_names
 
-def loadScores(data_dir, han_char, f_read = None):
+def loadScores(data_dir, f_read = None):
     """
     Loads gene score from XML source
     """
     if f_read is None:
-        dir_list = os.listdir(f"{data_dir}/{han_char}")
-        dir_list.sort()
+        f_names = os.listdir(f"{data_dir}")
+        f_names.sort()
     else:
-        dir_list = f_read
+        f_names = f_read
     scores = []
-    f_names = []
-    for f in dir_list:
-        flines = open(f"{data_dir}/{han_char}/{f}", "rb").readlines()
-        f_names.append(flines[0].decode()[:-1])
     for f in f_names:
-        xml_data = open(f, "r").read()
+        xml_data = open(f"{data_dir}/{f}", "r").read()
         root = xmltodict.parse(xml_data)
-        score = root["genome"]["statistics"]["@score"]
+        score = float(root["genome"]["statistics"]["@score"])
         scores.append(score)
     return scores
 
@@ -351,6 +371,7 @@ def scanSegments(xdir, out_dir="./HanBitmap", recursive=False, verbose=0, from_r
     if (int(verbose) >= 1 and not from_recursive) or (int(verbose) >= 2):
         print(f"Scanning directiory {xdir}...")
     dir_list = os.listdir(xdir)
+    dir_list.sort()
     han_i_new = {}
     if not path.isdir(out_dir):
         os.mkdir(out_dir)

@@ -75,18 +75,18 @@ def readExhaustive(ref_char, f_name, exhaust_dir = "Exhaustive", save_file = "")
     data_read = np.load(save_file)
     return data_read
 
-def exhaustScore(ref_char, f_name, data_dir, exhaust_dir = "Exhaustive", force_refresh = False, prog_interval = 100, save = True, file_prefix = ""):
+def exhaustScore(ref_char, f_name, data_dir, exhaust_dir = "Exhaustive", force_refresh = False, save = True, file_prefix = ""):
     f_name_cleaned = f_name.replace("/", "_")
     exhaust_name = f"{exhaust_dir}/exhaust_{file_prefix}{ref_char}_{f_name_cleaned}.npy"
     exhaust_maxes = []
     if not os.path.isfile(exhaust_name) or force_refresh:
-        for e in computeExhaustive(ref_char, [f_name], data_dir, prog_interval = prog_interval, save = save, save_file = exhaust_name):
+        for e in computeExhaustive(ref_char, [f_name], data_dir, save = save, save_file = exhaust_name):
             exhaust_maxes.append(e.max())
     else:
         exhaust_maxes = readExhaustive(ref_char, f_name, exhaust_dir, exhaust_name)
     return np.max(exhaust_maxes)
 
-def exhaustScoreAlignment(ref_char, f_name, data_dir, exhaust_dir = "Exhaustive", prog_interval = 100, save = True):
+def exhaustScoreAlignment(ref_char, f_name, data_dir, exhaust_dir = "Exhaustive", save = True):
     exhaust_maxes, exhaust_alignments = [], []
     for e in computeExhaustiveAlign(ref_char, [f_name], data_dir, prog_interval = prog_interval, save = save):
         exhaust_scores, alignments = list(e)

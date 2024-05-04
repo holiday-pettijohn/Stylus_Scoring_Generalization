@@ -18,10 +18,12 @@ Open a shell on the server and run the following:
 
 ```
 source /opt/anaconda/bin/activate root
-https://github.com/biologic/stylus.git
+git clone https://github.com/biologic/stylus.git
 cd stylus
 python setup.py install
 ```
+
+You may need to run `python setup.py install` as sudo
 
 This will activate your Anaconda enviornment and install the Python library for Stylus for your user
 

@@ -20,9 +20,9 @@ scores [Array (float)]: list of log ratios between the standard and heuristic sc
 
 Input:
 
-`algorithm(stroke_geometry, reference_geometry, stroke_fractional_distance, reference_fractional_distance)`: A function with the below signature. Takes stroke geometry and archetype geometry and scores the stroke against the archetype
+algorithm (function): : A function with the below call signature. Takes stroke geometry and archetype geometry and scores the stroke against the archetype
 
-- Algorithm arguments:
+- `algorithm(stroke_geometry, reference_geometry, stroke_fractional_distance, reference_fractional_distance)`
 
 - stroke_geometry [Array[Array] (float)]: List of the strokes from the gene instance
 
@@ -153,9 +153,140 @@ Output:
 
 exhaust_align [Array (int)]: Alignment with which to obtain the optimal score for the given gene against the given archetype
 
-## load_strokes.py
-
 ## score_strokes.py
+
+Contains current implementations of heuristic matching algorithms of the form which may be tested against exhaustive results given the existing framework
+
+`alignStrokes(strokes, ref, p_strokes, p_ref)`
+
+Use a greedy search alongside an matrix indicating the error between all gene/archetype stroke pairings as a heuristic to find a good alignment between the gene and archetype strokes
+
+The main content of this function is the search method being used (greedy search). The calculations for the error matrix are done independently and invoked by this function, and can thus be independently modified and/or replaced without modifying the greedy search methodology (or visa versa - the error calculations can remain identical while changing the search methodology).
+
+Input:
+
+TODO: Need to check the exact data structure for all stroke lists to verify this
+
+strokes [Array[Array] (float, float)]: list of points in the gene strokes
+
+ref [Array[Array] (float, float)]: list of points in the reference strokes
+
+p_strokes [Array (float)]: percentages of progress for each point in the gene strokes
+
+p_ref [Array (float)]: percentages of progress for each point in the reference strokes
+
+Output:
+
+stroke_map [Array (int)]: a mapping for the strokes from the gene to the archetype character
+
+`strokeErrorMatrix(strokes, ref, p_strokes, p_ref, error_function = maxDeviation)`
+
+Calculates a matrix containing the error measure between each possible pairing of gene and archetype strokes. This is meant to be used within implementations of alignment algorithms.
+
+Input:
+
+strokes [Array[Array] (float, float)]: list of points in the gene strokes
+
+ref [Array[Array] (float, float)]: list of points in the reference strokes
+
+p_strokes [Array (float)]: percentages of progress for each point in the gene strokes
+
+p_ref [Array (float)]: percentages of progress for each point in the reference strokes
+
+error_function (function): A function with the below call signature. Calculates an error value given any two strokes
+
+- `error_function(stroke, ref_stroke, p_stroke, p_ref)`
+
+- Calculates the error between two particular strokes
+
+- Input:
+
+- stroke [Array (float, float)]: list of points in the gene stroke
+
+- ref [Array (float, float)]: list of points in the reference stroke
+
+- p_stroke [Array (float)]: percentage of progress for each point in the gene strokes
+
+- p_ref [Array (float)]: percentage of progress for each point in the reference strokes
+
+- Output:
+
+- error (float): The error between the two strokes
+
+Output:
+
+error_matrix [Array[Array] (float)]: matrix containing the matching error between every stroke pair of form (archetype_stroke, gene_stroke)
+
+`strokeError(stroke, ref_stroke, p_stroke, p_ref)`
+
+Calculates the maximum point deviation between two particular strokes. This is one specific implementation of the above error_function.
+
+Input:
+
+stroke [Array (float, float)]: list of points in the gene stroke
+
+ref [Array (float, float)]: list of points in the reference stroke
+
+p_stroke [Array (float)]: percentage of progress for each point in the gene strokes
+
+p_ref [Array (float)]: percentage of progress for each point in the reference strokes
+
+Output:
+
+error (float): The error between the two strokes
+
+`strokeErrorHybrid(stroke, ref_stroke, p_stroke, p_ref, w1=0.5, w2=0.5)`
+
+Calculates the error between two strokes using a weighted combination of maximum point deviation and mean point deviation.
+
+Input:
+
+Same as general `error_function` with two additional arguments:
+
+w1 (float): weight to give to the first technique (max dev)
+
+w2 (float): weight to give to the second technique (mean dev)
+
+Note: w1+w2 should equal 1 for consistency's sake, but the function will not error if this is not the case
+
+Note: the error_function interface does not pass the weight arguments (w1, w2) by default. To change these, you can wrap the function to pass different default arguments. For example:
+
+```
+def wrapper(stroke, ref_stroke, p_stroke, p_ref):
+    return strokeErrorHybrid(stroke, ref_stroke, p_stroke, p_ref, w1=0.7, w2=0.3)
+```
+
+Output:
+
+Same as general `error_function`
+
+`strokeErrorScaled(stroke, ref_stroke, p_stroke, p_ref)`
+
+Calculates the maximum point deviation between two particular strokes after scaling them on top of each other such that their centers of mass align
+
+Input:
+
+Same as general `error_function`
+
+Output:
+
+Same as general `error_function`
+
+`strokeTrace(stroke, stroke_progresses, progress)`
+
+Interpolates a point along a stroke at a given fractional distance along said stroke
+
+Input:
+
+stroke: list of points in the stroke
+
+stroke_progress: list of fractional distances associated with each point in the stroke
+
+progress: percentage of the way to trace the stroke to interpolate the point
+
+Output:
+
+interpolated_point: point along the stroke found at the provided fractional distance
 
 ## xml_parse.py
 

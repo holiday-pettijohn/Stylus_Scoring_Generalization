@@ -8,29 +8,29 @@ Gets heuristic and exhaustive scores for any given algorithm. Contains a specifi
 
 Input:
 
-heuristic_scores [Array (float)]: list of scores obtained from a heuristic algorithm
+heuristic_scores [Array[float]]: list of scores obtained from a heuristic algorithm
 
-standard_scores [Array (float)]: list of scores obtained from a canonical score source, such as exhaustive search or the original gene file
+standard_scores [Array[float]]: list of scores obtained from a canonical score source, such as exhaustive search or the original gene file
 
 Output:
 
-scores [Array (float)]: list of log ratios between the standard and heuristic score. Higher values indicate more error.
+scores [Array[float]]: list of log ratios between the standard and heuristic score. Higher values indicate more error.
 
 `getScores(ref_char, data_dir)`: Calculates scores for a set of gene characters against a given reference with a heuristic algorithm. Files from the directory specified with gene data are read in a deterministic order (same files = same order)
 
 Input:
 
-algorithm (function): : A function with the below call signature. Takes stroke geometry and archetype geometry and scores the stroke against the archetype
+algorithm [function]: : A function with the below call signature. Takes stroke geometry and archetype geometry and scores the stroke against the archetype
 
 - `algorithm(stroke_geometry, reference_geometry, stroke_fractional_distance, reference_fractional_distance)`
 
-- stroke_geometry [Array[Array] (float)]: List of the strokes from the gene instance
+- stroke_geometry [Array[Array[float, float]]]: List of the strokes from the gene instance
 
-- reference_geometry [Array[Array] (float)]: List of the strokes from the archetype
+- reference_geometry [Array[Array[float, float]]]: List of the strokes from the archetype
 
-- stroke_fractional_distance [Array (float)]: List of fractional distances (a.k.a. progress percentages) for each stroke in the gene instance
+- stroke_fractional_distance [Array[float]]: List of fractional distances (a.k.a. progress percentages) for each stroke in the gene instance
 
-- reference_fractional_distance [Array (float)]: List of fractional distances (a.k.a. progress percentages) for each stroke in the reference
+- reference_fractional_distance [Array[float]]: List of fractional distances (a.k.a. progress percentages) for each stroke in the reference
 
 ref_char [string]: UTF-8 name of the archetype in question
 
@@ -38,10 +38,10 @@ data_dir [string]: Directory with the gene files for testing
 
 Output:
 
-heuristic_scores [Array (float)]: The scores returned from the given algorithm for each of the genes in the directory
+heuristic_scores [Array[float]]: The scores returned from the given algorithm for each of the genes in the directory
 
-heuristic_alignments [Array[Array] (int)]: Alignments which the algorithm returned
-marks [Array (bool)]: Whether or not each respective score has a mark, which is an additional stroke which has no counterpart in the archetype
+heuristic_alignments [Array[Array[int]]]: Alignments which the algorithm returned
+marks [Array[bool]]: Whether or not each respective score has a mark, which is an additional stroke which has no counterpart in the archetype
 
 `exhaustiveScores(ref_char, data_dir, timed = False, save = False, file_prefix = "")`: Calculates the Stylus score for the best matching between a given archetype and the gene files in a given directory using exhaustive search. This can take a while, especially for high stroke count archetypes.
 
@@ -59,7 +59,7 @@ file_prefix [string] = "": File prefix which will be prepended to generated file
 
 Output:
 
-exhaustive_scores [Array (float)]: List of Stylus scores for the best matchings between the given archetype and file. Files are iterated in a constant order which can be obtained by running `sorted(files)` on the list of files in question.
+exhaustive_scores [Array[float]]: List of Stylus scores for the best matchings between the given archetype and file. Files are iterated in a constant order which can be obtained by running `sorted(files)` on the list of files in question.
 
 ## exhaustive.py
 
@@ -73,7 +73,7 @@ Input:
 
 ref_char [string]: UTF-8 name of the archetype in question
 
-f_read [Array (string)]: List of files within data_dir to search for optimal alignments
+f_read [Array[string]]: List of files within data_dir to search for optimal alignments
 
 data_dir [string]: Directory with the gene files for testing
 
@@ -89,7 +89,7 @@ save_file [string]: File to write exhaustive scores to, if scores are to be save
 
 Output:
 
-exhaustive_scores [Generator[Array, Array] (float, int), ]: Generator for the series of optimal scores for the genes against the given archetype
+exhaustive_scores [Generator[Array[float], Array[int]]]: Generator for the series of optimal scores for the genes against the given archetype
 
 `computeExhastiveAlign(ref_char, f_read, data_dir, exhaust_dir = "Exhaustive", prog_interval = 100, save = True, xml_dir = "GenXml/Exhaustive", save_file = "")`
 
@@ -99,7 +99,7 @@ Input: Identical to the above (computeExhaustive)
 
 Output:
 
-exhaustive_scores [Generator[Array, Array] (float, int), ]: Generator for the series of optimal scores for the genes against the given archetype, paired with the alignments associated with said scores
+exhaustive_scores [Generator[Array[float], Array[int]]]: Generator for the series of optimal scores for the genes against the given archetype, paired with the alignments associated with said scores
 
 `readExhaustive`
 
@@ -117,7 +117,7 @@ save_file [string]: File to read exhaustive scores from. If not specified, this 
 
 Output:
 
-data_read [Array (float)]: List of scores read from the indicated files
+data_read [Array[float]]: List of scores read from the indicated files
 
 `exhaustScore`
 
@@ -151,7 +151,7 @@ Input: Identical to the above (exhaustScore), without file_prefix
 
 Output:
 
-exhaust_align [Array (int)]: Alignment with which to obtain the optimal score for the given gene against the given archetype
+exhaust_align [Array[int]]: Alignment with which to obtain the optimal score for the given gene against the given archetype
 
 ## score_strokes.py
 
@@ -167,17 +167,17 @@ Input:
 
 TODO: Need to check the exact data structure for all stroke lists to verify this
 
-strokes [Array[Array] (float, float)]: list of points in the gene strokes
+strokes [Array[Array[float, float]]]: list of points in the gene strokes
 
-ref [Array[Array] (float, float)]: list of points in the reference strokes
+ref [Array[Array[float, float]]]: list of points in the reference strokes
 
-p_strokes [Array (float)]: percentages of progress for each point in the gene strokes
+p_strokes [Array[float]]: percentages of progress for each point in the gene strokes
 
-p_ref [Array (float)]: percentages of progress for each point in the reference strokes
+p_ref [Array[float]]: percentages of progress for each point in the reference strokes
 
 Output:
 
-stroke_map [Array (int)]: a mapping for the strokes from the gene to the archetype character
+stroke_map [Array[int]]: a mapping for the strokes from the gene to the archetype character
 
 `strokeErrorMatrix(strokes, ref, p_strokes, p_ref, error_function = maxDeviation)`
 
@@ -185,15 +185,15 @@ Calculates a matrix containing the error measure between each possible pairing o
 
 Input:
 
-strokes [Array[Array] (float, float)]: list of points in the gene strokes
+strokes [Array[Array[float, float]]]: list of points in the gene strokes
 
-ref [Array[Array] (float, float)]: list of points in the reference strokes
+ref [Array[Array[float, float]]]: list of points in the reference strokes
 
-p_strokes [Array (float)]: percentages of progress for each point in the gene strokes
+p_strokes [Array[float]]: percentages of progress for each point in the gene strokes
 
-p_ref [Array (float)]: percentages of progress for each point in the reference strokes
+p_ref [Array[float]]: percentages of progress for each point in the reference strokes
 
-error_function (function): A function with the below call signature. Calculates an error value given any two strokes
+error_function [function]: A function with the below call signature. Calculates an error value given any two strokes
 
 - `error_function(stroke, ref_stroke, p_stroke, p_ref)`
 
@@ -201,21 +201,21 @@ error_function (function): A function with the below call signature. Calculates 
 
 - Input:
 
-- stroke [Array (float, float)]: list of points in the gene stroke
+- stroke [Array[float, float]]: list of points in the gene stroke
 
-- ref [Array (float, float)]: list of points in the reference stroke
+- ref [Array[float, float]]: list of points in the reference stroke
 
-- p_stroke [Array (float)]: percentage of progress for each point in the gene strokes
+- p_stroke [Array[float]]: percentage of progress for each point in the gene strokes
 
-- p_ref [Array (float)]: percentage of progress for each point in the reference strokes
+- p_ref [Array[float]]: percentage of progress for each point in the reference strokes
 
 - Output:
 
-- error (float): The error between the two strokes
+- error [float]: The error between the two strokes
 
 Output:
 
-error_matrix [Array[Array] (float)]: matrix containing the matching error between every stroke pair of form (archetype_stroke, gene_stroke)
+error_matrix [Array[Array[float]]]: matrix containing the matching error between every stroke pair of form (archetype_stroke, gene_stroke)
 
 `strokeError(stroke, ref_stroke, p_stroke, p_ref)`
 
@@ -223,17 +223,17 @@ Calculates the maximum point deviation between two particular strokes. This is o
 
 Input:
 
-stroke [Array (float, float)]: list of points in the gene stroke
+stroke [Array[float, float]]: list of points in the gene stroke
 
-ref [Array (float, float)]: list of points in the reference stroke
+ref [Array[float, float]]: list of points in the reference stroke
 
-p_stroke [Array (float)]: percentage of progress for each point in the gene strokes
+p_stroke [Array[float]]: percentage of progress for each point in the gene strokes
 
-p_ref [Array (float)]: percentage of progress for each point in the reference strokes
+p_ref [Array[float]]: percentage of progress for each point in the reference strokes
 
 Output:
 
-error (float): The error between the two strokes
+error [float]: The error between the two strokes
 
 `strokeErrorHybrid(stroke, ref_stroke, p_stroke, p_ref, w1=0.5, w2=0.5)`
 
@@ -243,9 +243,9 @@ Input:
 
 Same as general `error_function` with two additional arguments:
 
-w1 (float): weight to give to the first technique (max dev)
+w1 [float]: weight to give to the first technique (max dev)
 
-w2 (float): weight to give to the second technique (mean dev)
+w2 [float]: weight to give to the second technique (mean dev)
 
 Note: w1+w2 should equal 1 for consistency's sake, but the function will not error if this is not the case
 
@@ -288,8 +288,157 @@ Output:
 
 interpolated_point: point along the stroke found at the provided fractional distance
 
-## xml_parse.py
+## xmlparse.py
 
-# Notebooks
+`extractBases(xml_file)`
 
+Input:
+
+xml_file [string]: File with the gene data to be read
+
+Output:
+
+han_char [string]: UTF-8 name of the associated Han archetype
+
+bases [string]: Representation of the mutated character in "ATGC" genetic encoding
+
+stroke_series [Array[int, int]]: Series of integers representing each stroke in the gene. This is distinct from the geometric representation of the gene in terms of strokes.
+
+stroke_order [Array[int]]: Order associated with the returned set of strokes
+
+`getXmlScore(xml_bytestring, save_xml="", save_min="")`
+
+Invokes Stylus API to get the score for an XML representation of a gene
+
+xml_bytestring [bytestring]: XML representation of the gene in question. This must specifically be a bytestring, or Stylus will not accept it
+
+save_xml [string]: Where to save the XML file produced by Stylus after scoring. If empty, the generated text is not saved.
+
+save_xml [string]: Where to save the original minimal XML file without the associated Stylus score. If empty, the generated text is not saved.
+
+Output:
+
+score [float]: Canonical Stylus score for the given gene
+
+`minXml(han_char, bases, strokes, stroke_order)`
+
+Generate the minimum necessary XML to represent a Stylus gene given the archetype, original bases, stroke data, and stroke order
+
+han_char [string]: UTF-8 name of the associated Han archetype
+
+bases [string]: Representation of the mutated character in "ATGC" genetic encoding
+
+stroke_order [Array[int]]: Order associated with the returned set of strokes
+
+Output:
+
+xml [bytestring]: Binary-encoded string containing XML data of the correct form for Stylus to process and score
+
+`xmlToGeometry(xml_file, output_size=(32, 32), border=0)`
+
+Extract the geometric points associated with the strokes of the given gene file
+
+xml_file [string]: File with the gene data to be read
+
+output_size [float, float]: Size of the bounding box against which the geometric points are to be scaled
+
+border [float]: Units of blank space to leave around the character, remaining within the bounding box defined by output_size
+
+Output:
+
+stroke_list [Array[Array[float, float]]]: List of segments. Each segment is a series of (x, y) points which geometrically represent the strokes in the gene.
+
+fractional_distances [Array[Array[float]]]: Fractional distance of each point in each segment. 0 indicates no fractional progress along a segment (the beginning), whereas 1 represents total fractional progress (the end).
+
+`loadRef(han_char, ref_dir = "Reference")`
+
+Load the genetic data of a Han archetype given its corresponding UTF-8 code
+
+han_char [string]: UTF-8 name of the associated Han archetype
+
+ref_dir [string]: Directory containing Han archetype files
+
+Output:
+
+stroke_list [Array[Array[float, float]]]: List of segments. Each segment is a series of (x, y) points which geometrically represent the strokes in the gene.
+
+fractional_distances [Array[Array[float]]]: Fractional distance of each point in each segment. 0 indicates no fractional progress along a segment (the beginning), whereas 1 represents total fractional progress (the end).
+
+scale [int, int]: Size of the bounding box around the loaded reference strokes
+
+`loadGeometry(data_dir, han_char, output_size = (32, 32), f_read = None)`
+
+Load geometric data for a given set of characters within a directory
+
+Note that this will error on an empty f_read argument
+
+(TODO: change this without breaking positional calls to the respective function)
+
+Input:
+
+data_dir [string]: Directory with the gene files for testing
+
+han_char [string]: UTF-8 name of the associated Han archetype
+
+output_size [float, float]: Size of the bounding box against which the geometric points are to be scaled
+
+f_read [Array[string]]: List of files within the above data_dir to read and process
+
+Output:
+
+geometry_data [Array[Array[Array[float, float]]], Array[Array[float]]]: A series of return values of the previously defined `xmlToGeometry`, the first value in each tuple being the stroke_list and the second being the fractional_distances associated with each processed file
+
+`loadGeometryFNames(data_dir, han_char, output_size = (32, 32), f_read = None)`
+
+Loads geometric data for a given set of characters within a directory. Also returns the original filenames of said characters.
+
+Input:
+
+Identical to `loadGeometry`
+
+Output:
+
+geometry_data [Array[Array[Array] (float, float), Array[Array] (float)]]: A series of return values of the previously defined `xmlToGeometry`, the first value in each tuple being the stroke_list and the second being the fractional_distances associated with each processed file
+
+file_names [Array[string]]: Names of the processed files, in the order of processing
+
+`loadGeometryBases(data_dir, output_size = (32, 32), f_read = None)`
+
+Load geometric data and relevant Stylus metadata for a given set of characters within a directory
+
+Given an identically named set of files within a directory, this function will iterate through them in the same order. Thus, all array-based return values will always be associated with the same original genes in the same order so long as the data directory is not changed.
+
+Note that this is the primary function used in the current framework for loading series of gene files, as it returns the information necessary to reconstruct the loaded genes into a valid XML format which Stylus can score
+
+Input:
+
+Identical to `loadGeometry`
+
+Output:
+
+geometry_data [Array[Array[Array] (float, float), Array[Array] (float)]]: A series of return values of the previously defined `xmlToGeometry`, the first value in each tuple being the stroke_list and the second being the fractional_distances associated with each processed file
+
+han_chars [Array[string]]: UTF-8 name of the Han archetype associated with each processed file
+
+base_data [Array[string]]: Representation of the mutated character in "ATGC" genetic encoding associated with each processed file
+
+stroke_sets [Array[Array[int, int]]]: Series of integers representing each stroke in the gene associated with each processed file
+
+stroke_orders [Array[Array[int]]]: Stroke order associated with each processed gene
+
+file_names [Array[string]]: Names of the processed files, in the order of processing
+
+`loadScores(data_dir, f_read = None)`
+
+Loads the canonical Stylus scores from a set of XML gene source files
+
+Input:
+
+data_dir [string]: Base directory containing XML gene files
+
+f_read [Array[string]]: List of files within the above data_dir to read and process
+
+Output:
+
+scores [Array[float]]: List of canonical Stylus scores associated with the given files, in the order the file names were passed in f_read, or otherwise in the alphabetically sorted order of file names in the given directory
 

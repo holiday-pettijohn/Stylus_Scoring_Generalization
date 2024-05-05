@@ -176,7 +176,7 @@ def loadGeometryFNames(data_dir, han_char, output_size = (32, 32), f_read = None
 
 def loadGeometryBases(data_dir, output_size = (32, 32), f_read = None):
     """
-    Loads geometric data about a gene characetr directly from the XML source
+    Loads geometric data about a gene character directly from the XML source
     """
     if f_read is None:
         f_names = os.listdir(data_dir)

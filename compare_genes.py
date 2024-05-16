@@ -14,7 +14,7 @@ from score_strokes import alignStrokes, greedyAlign2
 from exhaustive import computeExhaustive, exhaustScore, exhaustScoreAlignment
 
 
-def matchError(heuristic_scores, standard_scores, timed=False):
+def matchError(heuristic_scores, standard_scores):
     return log(standard_scores/heuristic_scores, 2)
 
 def getScores(algorithm, ref_char, data_dir):
